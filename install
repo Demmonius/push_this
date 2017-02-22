@@ -9,12 +9,12 @@ if [ -d ~/.push]; then
     echo "Veuillez supprimer le dossier ~/.push"
     exit 1
 fi
-#mkdir ~/.push
-#cp my_mouli ~/.push/
-#cp my_recu ~/.push/
-#cp push ~/.push/
+mkdir ~/.push
+cp my_mouli ~/.push/
+cp my_recu ~/.push/
+cp push ~/.push/
 echo "Copie des fichiers termines"
-#chmod +x *
+chmod +x *
 echo "Attribution des droits termines"
 echo "export PATH=""$HOME/.push:$PATH""" >> $HOME/.zshrc
 echo "Modification du path termines"
