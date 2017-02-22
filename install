@@ -3,9 +3,10 @@
 echo "Bienvenue dans ce script d'install"
 echo "Thx pour avoir dl mon script"
 echo
+echo
 echo "Tous les scripts sont situes dans ~/.push"
 
-if [ -d ~/.push]; then
+if [ -d ~/.push ]; then
     echo "Veuillez supprimer le dossier ~/.push"
     exit 1
 fi
@@ -16,6 +17,6 @@ cp my_recu ~/.push/
 cp push ~/.push/
 echo "Copie des fichiers termines"
 echo "Attribution des droits termines"
-echo "export PATH=""$HOME/.push:$PATH""" >> $HOME/.zshrc
+echo "export PATH=""$HOME/.push:"$PATH"""" >> $HOME/.zshrc
 echo "Modification du path termines"
 echo "Installation termine gg et ty"
