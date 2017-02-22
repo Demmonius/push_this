@@ -1,0 +1,21 @@
+#!/bin/bash
+
+echo "Bienvenue dans ce script d'install"
+echo "Thx pour avoir dl mon script"
+echo
+echo "Tous les scripts sont situes dans ~/.push"
+
+if [ -d ~/.push]; then
+    echo "Veuillez supprimer le dossier ~/.push"
+    exit 1
+fi
+#mkdir ~/.push
+#cp my_mouli ~/.push/
+#cp my_recu ~/.push/
+#cp push ~/.push/
+echo "Copie des fichiers termines"
+#chmod +x *
+echo "Attribution des droits termines"
+echo "export PATH=""$HOME/.push:$PATH""" >> $HOME/.zshrc
+echo "Modification du path termines"
+echo "Installation termine gg et ty"

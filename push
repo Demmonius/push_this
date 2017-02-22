@@ -1,0 +1,125 @@
+#!/bin/bash
+
+if [ $# -eq 0 ] || [ $1 = -h ] || [ $1 = -help ]; then
+    echo "Pour utiliser ce script :"
+    echo "1 argument : juste un git add, commit, push ,avec en arg le msg commit"
+    echo "2 arguments : Mettre le nom du binaire en 2eme arg, puis la moulinette se met en marche"
+    exit
+fi
+
+if  [ ! -e .git ] && [ ! -d .git ]; then
+    echo -e "\033[31m Tu dois etre dans un dossier git"
+    exit
+fi
+
+if [ $# -eq 1 ]; then
+    git add -A
+    git commit -m "$1"
+    git push origin master
+    exit
+fi
+
+if [ ! -e Makefile ]; then
+    echo -e "\033[31m Il manque le Makefile"
+    exit
+fi
+
+make re > /tmp/del.log
+make fclean > /tmp/del.log
+clear
+echo -e "\033[33m Verification des arguments"
+
+if [ $# -ne 2 ]; then
+    echo -e "\033[31m Il manque des arguments"
+    exit
+else
+    echo -e "\033[32m Args nb OK"
+fi
+
+if [ -z $2 ]
+then
+    echo -e "\033[31m   -KO commit"
+    exit
+else
+    echo -e "\033[32m   -OK commit"
+fi
+
+make -j > /tmp/del.log
+if [ -f $2 ] && [ -e $2 ]; then
+    echo -e "\033[32m   -OK bin"
+else
+    echo -e "\033[31m   -KO BIN"
+    exit
+fi
+
+if [ -x $2 ]; then
+    echo -e "\033[32m   -OK exec"
+else
+    echo -e "\033[31m   -KO exec"
+    exit
+fi
+    
+echo -e "\033[00m"
+
+echo -e "\033[33m Verification des fonctions interdites"
+
+#                    PRINTF
+
+var=$(nm ./$2 | grep -i "printf")
+
+if [[ "$var" =~ (.*)printf(.*) ]]; then
+    echo -e "\033[31m   -KO printf"
+    exit
+else
+    echo -e "\033[32m   -OK printf"
+fi
+
+#                   ATOI
+var=$(nm ./$2 | grep -i "atoi")
+if [[ "$var" =~ (.*)atoi(.*) ]]; then
+    echo -e "\033[31m   -KO atoi"
+    exit
+else
+    echo -e "\033[32m   -OK atoi"
+fi
+
+#                   ATOF
+var=$(nm ./$2 | grep -i "atof")
+
+if [[ "$var" =~ (.*)atof(.*) ]]; then
+    echo -e "\033[31m   -KO atof"
+    exit
+else
+    echo -e "\033[32m   -OK atof"
+fi
+
+#                  STRLEN
+var=$(nm ./$2 | grep -i "strlen")
+
+if [[ "$var" =~ (.*)printf(.*) ]]; then
+    echo -e "\033[31m   -KO strlen"
+else
+    echo -e "\033[32m   -OK strlen"
+fi
+
+echo -e "\033[33m Verification norme :"
+echo -e "y/N"
+read yn
+echo -e "\033[00m"
+if [ $yn = "y" ] || [ $yn = "yes" ]; then
+    if ! my_recu; then
+	exit 1
+    fi
+    
+else
+    echo "Nope"
+fi
+
+echo -e "\033[33m Verification OK, push in coming"
+echo -e "\033[00m"
+make fclean > /tmp/del.log
+rm /tmp/del.log
+~/scripts/mr_clean
+del=$(git add -A)
+del=$(git commit -m "$1")
+del=$(git push origin master)
