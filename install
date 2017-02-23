@@ -43,6 +43,5 @@ echo  >> $HOME/.$shell
 echo "Modification du path termines"
 echo "Restart du terminal"
 echo
-echo "Merci de taper : source ~/.zshrc"
 echo "Installation termine gg et ty"
 echo
