@@ -1,23 +1,39 @@
 #!/bin/bash
 
+
 echo "Bienvenue dans ce script d'install"
 echo "Thx pour avoir dl mon script"
 echo
 echo
 echo "Tous les scripts sont situes dans ~/.push"
-
+read -p "Quel shell utilisez vous : " shell
+if [ $shell != "bash" ] && [ $shell != "zsh" ];then
+    echo "Je connais pas ce shell sry"
+    exit
+fi
+shell=${shell}rc
 if [ -d ~/.push ]; then
     echo "Veuillez supprimer le dossier ~/.push"
     exit 1
 fi
+if cat $HOME/.$shell | grep "## PUSH SCRIPT ##"; then
+    echo "Merci de supprimer dans .$shell les lignes du scripts, afin que nous refassions une installation propre"
+    exit
+fi
 chmod +x *
+read -p "Alias pour le push: " push
+read -p "Alias pour la moulinette globale: " recu
+read -p "Alias pour la moulinette locale: " locale
 mkdir ~/.push
-cp my_mouli ~/.push/
-cp my_recu ~/.push/
-cp push ~/.push/
+cp my_mouli ~/.push/$locale
+cp my_recu ~/.push/$recu
+cp push ~/.push/$push
 echo "Copie des fichiers termines"
 echo "Attribution des droits termines"
-echo "export PATH=""$HOME/.push:"$PATH"""" >> $HOME/.zshrc
+echo  >> $HOME/.$shell
+echo "## PUSH SCRIPT ## Pls don't touch this" >> $HOME/.$shell
+echo "export PATH=""$HOME/.push:"$PATH"""" >> $HOME/.$shell
+echo  >> $HOME/.$shell
 echo "Modification du path termines"
 echo "Restart du terminal"
 echo
