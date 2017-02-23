@@ -5,3 +5,9 @@ Ce script vous permet de verifier l'etat de votre programme avant de le push. En
 (Ce script est perso mais si jamais quelqu'un est interesse :))
 
 Enjoy !
+
+# Installation
+Tapez : git clone https://github.com/Demmonius/push_this.git pour récuper les scripts
+Ensuite, installez le script en tapant : ./install
+On vous demande si vous êtes sur zsh ou bash.
+Choisissez ensuite les alias que vous souhaiterez utiliser, pour les différents scripts
