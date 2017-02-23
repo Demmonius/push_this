@@ -19,4 +19,6 @@ echo "Copie des fichiers termines"
 echo "Attribution des droits termines"
 echo "export PATH=""$HOME/.push:"$PATH"""" >> $HOME/.zshrc
 echo "Modification du path termines"
+echo "Restart du terminal"
+source ~/.zshrc
 echo "Installation termine gg et ty"
