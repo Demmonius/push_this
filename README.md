@@ -5,4 +5,3 @@ Ce script vous permet de verifier l'etat de votre programme avant de le push. En
 (Ce script est perso mais si jamais quelqu'un est interesse :))
 
 Enjoy !
-CC
