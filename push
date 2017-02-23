@@ -65,54 +65,54 @@ echo -e "\033[33m Verification des fonctions interdites"
 
 #                    PRINTF
 
-var=$(nm ./$2 | grep -i "printf")
-
+var=$(nm ./$2 | grep 'printf*@@GLIBC*')
 if [[ "$var" =~ (.*)printf(.*) ]]; then
     echo -e "\033[31m   -KO printf"
     exit
 else
+    
     echo -e "\033[32m   -OK printf"
 fi
+#                    ATOI
 
-#                   ATOI
-var=$(nm ./$2 | grep -i "atoi")
+var=$(nm ./$2 | grep 'atoi*@@GLIBC*')
 if [[ "$var" =~ (.*)atoi(.*) ]]; then
     echo -e "\033[31m   -KO atoi"
     exit
 else
+    
     echo -e "\033[32m   -OK atoi"
 fi
+#                    ATOF
 
-#                   ATOF
-var=$(nm ./$2 | grep -i "atof")
-
+var=$(nm ./$2 | grep 'atof*@@GLIBC*')
 if [[ "$var" =~ (.*)atof(.*) ]]; then
     echo -e "\033[31m   -KO atof"
     exit
 else
+    
     echo -e "\033[32m   -OK atof"
 fi
+#                    strlen
 
-#                  STRLEN
-var=$(nm ./$2 | grep -i "strlen")
-
-if [[ "$var" =~ (.*)printf(.*) ]]; then
+var=$(nm ./$2 | grep 'strlen*@@GLIBC*')
+if [[ "$var" =~ (.*)strlen(.*) ]]; then
     echo -e "\033[31m   -KO strlen"
+    exit
 else
+    
     echo -e "\033[32m   -OK strlen"
 fi
-
 echo -e "\033[33m Verification norme :"
-echo -e "y/N"
-read yn
+read -p "Y/n : " yn
 echo -e "\033[00m"
-if [ $yn = "y" ] || [ $yn = "yes" ]; then
+if [ $yn = n ] || [ $yn = no ] || [ $yn = N ]; then
+    echo "Nope"
+    
+else
     if ! my_recu; then
 	exit 1
     fi
-    
-else
-    echo "Nope"
 fi
 
 echo -e "\033[33m Verification OK, push in coming"

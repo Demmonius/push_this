@@ -22,11 +22,9 @@ if cat $HOME/.$shell | grep "## PUSH SCRIPT ##"; then
 fi
 chmod +x *
 read -p "Alias pour le push: " push
-read -p "Alias pour la moulinette globale: " recu
-read -p "Alias pour la moulinette locale: " locale
 mkdir ~/.push
-cp my_mouli $HOME/.push/$locale
-cp my_recu $HOME/.push/$recu
+cp my_mouli $HOME/.push/
+cp my_recu $HOME/.push/
 cp push $HOME/.push/$push
 echo "Alias pour Mr. Clean : mrc"
 cp mr_clean $HOME/.push/mrc
