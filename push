@@ -119,7 +119,7 @@ echo -e "\033[33m Verification OK, push in coming"
 echo -e "\033[00m"
 make fclean > /tmp/del.log
 rm /tmp/del.log
-~/scripts/mr_clean
+mrc
 del=$(git add -A)
 del=$(git commit -m "$1")
 del=$(git push origin master)
