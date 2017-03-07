@@ -1,20 +1,32 @@
 #!/bin/bash
+#tmp_dir="/var/tmp/test.sh"
+#rm -f $tmp_dir
+#for a in *
+#do
+#    if [ -d $a ]; then
+#	echo "Ouverture et execution dans des fichiers"
+#	( cd $a; $0 )
+#    elif [[ $a =~ .*\.[ch] ]]; then
+#	n.py $a -score -libc -printline -return >> $tmp_dir
+#	echo $a
+#    fi
+#done
+#cat $tmp_dir
+#echo
+#echo
+#if ! grep "Erreur" $tmp_dir; then
+#    exit 0
+#else
+#    exit 1
+#fi
+
 tmp_dir="/var/tmp/test.sh"
 rm -f $tmp_dir
-for a in *
-do
-    if [ -d $a ]; then
-#	echo "Ouverture et execution dans des fichiers"
-	( cd $a; $0 )
-    elif [[ $a =~ .*\.[ch] ]]; then
-	my_mouli $a >> $tmp_dir
-#	echo $a
-    fi
-done
+n.py . -verbose -score -libc -printline -return > $tmp_dir
 cat $tmp_dir
 echo
 echo
-if ! grep "malus" $tmp_dir; then
+if ! grep "Erreur" $tmp_dir; then
     exit 0
 else
     exit 1
