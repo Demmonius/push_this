@@ -13,6 +13,7 @@ if  [ ! -e .git ] && [ ! -d .git ]; then
 fi
 
 if [ $# -eq 1 ]; then
+    make fclean
     git add -A
     git commit -m "$1"
     git push origin master
